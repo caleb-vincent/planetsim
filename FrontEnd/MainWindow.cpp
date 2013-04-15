@@ -111,6 +111,21 @@ void CMainWindow::FrameSlip( int slipTime )
    m_ui->statusbar->showMessage( QString().sprintf( "Frame Slip: %d", slipTime ), 3 );
 }
 
+void CMainWindow::on_actionPause_activated()
+{
+   static bool isPaused( false );
+   if( !isPaused )
+   {
+      m_pModel->Pause();
+      isPaused = true;
+   }
+   else
+   {
+      m_pModel->Resume();
+      isPaused = false;
+   }
+}
+
 void CMainWindow::on_actionSave_As_activated()
 {
    QFileDialog::getSaveFileName( this,

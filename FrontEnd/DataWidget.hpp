@@ -36,6 +36,7 @@ namespace Ui {
 }
 
 class CBodyModel;
+class QModelIndex;
 
 class CDataWidget : public QDockWidget
 {
@@ -49,6 +50,8 @@ class CDataWidget : public QDockWidget
       
    public slots:
       void ShowContextMenu( const QPoint& );
+
+   private slots:
 
    private:
       Ui::CDataWidget * m_pUi;

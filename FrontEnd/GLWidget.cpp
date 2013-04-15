@@ -46,7 +46,8 @@ CGLWidget::CGLWidget(QAbstractItemModel* pModel, QWidget *parent) :
     m_ui(new Ui::CGLWidget),
     m_zoom(1),
     m_horz(0),
-    m_vert(0)
+    m_vert(0),
+    m_bodyZoom(1)
 {
    m_ui->setupUi(this);
    setAutoFillBackground( false );
@@ -76,8 +77,8 @@ void CGLWidget::paintEvent(QPaintEvent *event)
                                   CBodyModel::RenderRole ).toInt() * m_zoom );
       painter.drawEllipse( m_pModel->data( xIndex, CBodyModel::RenderRole ).toInt() * m_zoom,
                            m_pModel->data( yIndex, CBodyModel::RenderRole ).toInt() * m_zoom,
-                           radius,
-                           radius );
+                           radius * m_bodyZoom,
+                           radius * m_bodyZoom );
    }
    painter.restore();
    painter.end();
@@ -126,6 +127,11 @@ void CGLWidget::SetLockStep( bool set )
       disconnect(this,
                  SLOT(dataChanged(QModelIndex,QModelIndex)));
    }
+}
+
+void CGLWidget::SetBodyZoom( double zoom )
+{
+   m_bodyZoom = zoom;
 }
 
 void CGLWidget::dataChanged( const QModelIndex &, const QModelIndex & )

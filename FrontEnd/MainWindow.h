@@ -53,9 +53,8 @@ public slots:
 
    private slots:
     void on_actionSave_As_activated();
-
+    void on_actionPause_activated();
     void on_actionSave_activated();
-
     void on_actionOpen_activated();
 
 signals:
