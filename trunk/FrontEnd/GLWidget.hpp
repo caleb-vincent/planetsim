@@ -57,6 +57,7 @@ public slots:
     void SetVert( double vert );
     void SetTargetFramerate( int speed );
     void SetLockStep( bool set );
+    void SetBodyZoom(double);
     void dataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight );
 
 private:
@@ -69,6 +70,7 @@ private:
     double              m_zoom;
     double              m_horz;
     double              m_vert;
+    double              m_bodyZoom;
 };
 
 #endif // GLWIDGET_HPP

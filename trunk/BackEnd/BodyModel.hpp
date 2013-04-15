@@ -55,7 +55,7 @@ class CBodyModel : public QAbstractTableModel
       QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;
       Qt::ItemFlags 	flags(const QModelIndex & index) const;
       QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
-      bool 	setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
+      bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
 //************************************************************************************************************
 //    End: QAbstractTableModel Overriden Functions
 //************************************************************************************************************
@@ -63,6 +63,7 @@ class CBodyModel : public QAbstractTableModel
       enum
       {
          ID = 0,
+         MASS,
          X_POSITION,
          Y_POSITION,
          Z_POSITION,
@@ -91,6 +92,8 @@ class CBodyModel : public QAbstractTableModel
    public slots:
       void Iterate();
       void SetIterationSpeed( int );
+      void Pause();
+      void Resume();
 
    private:
       bool Initialize();

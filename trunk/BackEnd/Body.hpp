@@ -64,6 +64,31 @@ class CBody : public ITime, public IUid
       bool operator ==( const CBody& other );
       bool operator !=( const CBody& other );
 
+      inline void SetMass( Mass_t mass )
+      {
+         m_mass = mass;
+      }
+
+      inline void SetRadius( Radius_t radius )
+      {
+         m_radius = radius;
+      }
+
+      inline void SetPosition( const PositionVec_t&  pos)
+      {
+         m_position= pos;
+      }
+
+      inline void SetVelocity( const VelocityVec_t& vel )
+      {
+         m_velocity = vel;
+      }
+
+      inline void SetAcceleration( const AccelerationVec_t& accl )
+      {
+         m_acceleration= accl;
+      }
+
       inline Mass_t GetMass() const
       {
          return m_mass;

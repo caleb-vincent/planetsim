@@ -158,6 +158,7 @@ bool CBodyModel::Reset()
       delete m_bodies[index];
    }
    m_mutex.unlock();
+   m_timer.start();
    return true;
 }
 
@@ -180,6 +181,10 @@ QVariant CBodyModel::data(const QModelIndex & index, int role) const
       if( index.column() == ID )
       {
          result = index.row();
+      }
+      if( index.column() == MASS )
+      {
+         result = m_bodies[index.row()]->GetMass();
       }
       else if( index.column() == X_POSITION )
       {
@@ -229,6 +234,10 @@ QVariant CBodyModel::data(const QModelIndex & index, int role) const
       {
          result = formatted.sprintf( "%u", index.row() );
       }
+      else if( index.column() == MASS )
+      {
+         result = formatted.sprintf( "%f", m_bodies[index.row()]->GetMass() );
+      }
       else if( index.column() == X_POSITION )
       {
          result = formatted.sprintf( "%f", m_bodies[index.row()]->GetPosition().m_x );
@@ -275,9 +284,13 @@ QVariant CBodyModel::data(const QModelIndex & index, int role) const
 
 Qt::ItemFlags CBodyModel::flags(const QModelIndex & index) const
 {
-   if( index.isValid() )
+   if( index.isValid() && index != QModelIndex() )
    {
-      if( index != QModelIndex() )
+      if( index.column() != ID && !m_timer.isActive() )
+      {
+         return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable;
+      }
+      else
       {
          return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
       }
@@ -297,6 +310,8 @@ QVariant CBodyModel::headerData(int section, Qt::Orientation orientation, int ro
       {
          case ID:
             return tr("ID");
+         case MASS:
+            return tr("Mass");
          case X_VELOCITY:
             return tr("X Velocity");
          case Y_VELOCITY:
@@ -323,9 +338,177 @@ QVariant CBodyModel::headerData(int section, Qt::Orientation orientation, int ro
    }
 }
 
-bool CBodyModel::setData(const QModelIndex & /*index*/, const QVariant & /*value*/, int /*role*/)
+bool CBodyModel::setData(const QModelIndex & index, const QVariant & value, int role)
 {
-   return false;
+   bool result( false );
+   if( role == Qt::EditRole )
+   {
+      bool isOk( false );
+      m_mutex.lock();
+      switch( index.column() )
+      {
+         case MASS:
+         {
+            CBody::Mass_t mass(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetMass( mass );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case RADIUS:
+         {
+            CBody::Mass_t radius(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetRadius( radius );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case X_POSITION:
+         {
+            PositionVec_t::VecType_t xPos(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( PositionVec_t( xPos, 0, 0 ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case Y_POSITION:
+         {
+            PositionVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( PositionVec_t( 0, val, 0 ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case Z_POSITION:
+         {
+            PositionVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( PositionVec_t( 0, 0, val ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case X_VELOCITY:
+         {
+            VelocityVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( VelocityVec_t( val, 0, 0 ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case Y_VELOCITY:
+         {
+            VelocityVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( VelocityVec_t( 0, val, 0 ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case Z_VELOCITY:
+         {
+            VelocityVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( VelocityVec_t( 0, 0, val ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case X_ACCELERATION:
+         {
+            AccelerationVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( AccelerationVec_t( val, 0, 0 ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case Y_ACCELERATION:
+         {
+            AccelerationVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( AccelerationVec_t( 0, val, 0 ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         case Z_ACCELERATION:
+         {
+            AccelerationVec_t::VecType_t val(value.toDouble( &isOk ) );
+            if( isOk )
+            {
+               m_bodies[index.row()]->SetPosition( AccelerationVec_t( 0, 0, val ) );
+               result = true;
+            }
+            else
+            {
+               result = false;
+            }
+            break;
+         }
+         default:
+         {
+            break;
+         }
+      }
+      m_mutex.unlock();
+   }
+   return result;
 }
 
 void CBodyModel::Iterate()
@@ -349,3 +532,12 @@ void CBodyModel::SetIterationSpeed( int speed )
    m_timer.setInterval( speed );
 }
 
+void CBodyModel::Pause()
+{
+   m_timer.stop();
+}
+
+void CBodyModel::Resume()
+{
+   m_timer.start();
+}

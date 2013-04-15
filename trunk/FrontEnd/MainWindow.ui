@@ -22,7 +22,7 @@
      <x>0</x>
      <y>0</y>
      <width>801</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -33,6 +33,7 @@
     <addaction name="actionOpen"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
+    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuWindows">
     <property name="title">
@@ -139,10 +140,13 @@
     </iconset>
    </property>
    <property name="text">
-    <string>pause</string>
+    <string>Pause/Resume</string>
    </property>
    <property name="toolTip">
-    <string>Pause</string>
+    <string>Pause/Resume</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
   <action name="actionSave">
@@ -155,7 +159,15 @@
     <string>Save As</string>
    </property>
   </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
+ <slots>
+  <slot>Pause()</slot>
+ </slots>
 </ui>
