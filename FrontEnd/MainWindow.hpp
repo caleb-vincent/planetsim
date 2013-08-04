@@ -32,6 +32,8 @@
 #include <QLabel>
 
 class CBodyModel;
+class CSettingsWidget;
+class CDataWidget;
 
 namespace Ui {
    class CMainWindow;
@@ -39,32 +41,34 @@ namespace Ui {
 
 class CMainWindow : public QMainWindow
 {
-    Q_OBJECT
-    
+   Q_OBJECT
+
 public:
-    CMainWindow(CBodyModel* pModel, QWidget *parent = 0);
-    ~CMainWindow();
+   CMainWindow(CBodyModel* pModel, QWidget *parent = 0);
+   ~CMainWindow();
 
 public slots:
-    void SetScaleLabel( float ratio );
-    void ShowAboutWindow ();
-    void Open( const QString& fileName );
-    void FrameSlip( int slipTime );
+   void SetScaleLabel( float ratio );
+   void ShowAboutWindow ();
+   void Open( const QString& fileName );
+   void FrameSlip( int slipTime );
 
-   private slots:
-    void on_actionSave_As_activated();
-    void on_actionPause_activated();
-    void on_actionSave_activated();
-    void on_actionOpen_activated();
+private slots:
+   void on_actionSave_As_activated();
+   void on_actionPause_activated();
+   void on_actionSave_activated();
+   void on_actionOpen_activated();
+   void on_actionCascade_triggered();
+   void on_actionTile_triggered();
 
-signals:
-    void Load(QString);
+   signals:
+   void Load(QString);
 
 private:
-   float                m_ratio;
-   QLabel               m_frameSlip;
-   CBodyModel*          m_pModel;
-   Ui::CMainWindow*     m_ui;
+   QLabel            m_frameSlip;
+   float             m_ratio;
+   CBodyModel*       m_pModel;
+   Ui::CMainWindow*  m_ui;
 };
 
 #endif // MAINWINDOW_H
