@@ -31,6 +31,7 @@
 #include <QGLWidget>
 #include <QTimer>
 
+
 class QAbstractItemModel;
 class CFrontEndData;
 class QModelIndex;
@@ -43,13 +44,15 @@ class CGLWidget : public QGLWidget
 {
     Q_OBJECT
 public:
-    explicit CGLWidget(QAbstractItemModel* pModel, QWidget *parent = 0);
+    explicit CGLWidget(QWidget *parent = 0);
+
+      void Initialize( QAbstractItemModel* pModel );
 
 protected:
     void paintEvent( QPaintEvent *event );
 
 signals:
-    void FrameSlip( int slipTime );
+    void FrameSlip( QString slipTime, int displayTime );
 
 public slots:
     void SetZoom( double zoom );
@@ -59,6 +62,7 @@ public slots:
     void SetLockStep( bool set );
     void SetBodyZoom(double);
     void dataChanged ( const QModelIndex & topLeft, const QModelIndex & bottomRight );
+    void SetFocus( int row );
 
 private:
     QBrush              m_backgroundBrush;
@@ -71,6 +75,8 @@ private:
     double              m_horz;
     double              m_vert;
     double              m_bodyZoom;
+    int                 m_focus;
+
 };
 
 #endif // GLWIDGET_HPP

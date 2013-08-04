@@ -37,12 +37,12 @@
 
 
 
-CGLWidget::CGLWidget(QAbstractItemModel* pModel, QWidget *parent) :
+CGLWidget::CGLWidget( QWidget *parent ) :
    QGLWidget(QGLFormat(QGL::SampleBuffers), parent),
     m_backgroundBrush( Qt::black ),
     m_foregroundBrush( Qt::green ),
     m_foregroundPen( Qt::green ),
-    m_pModel( pModel ),
+    m_pModel( NULL ),
     m_ui(new Ui::CGLWidget),
     m_zoom(1),
     m_horz(0),
@@ -50,9 +50,17 @@ CGLWidget::CGLWidget(QAbstractItemModel* pModel, QWidget *parent) :
     m_bodyZoom(1)
 {
    m_ui->setupUi(this);
+
    setAutoFillBackground( false );
    m_foregroundPen.setWidth(1);
-   m_timer.start( 1000 / m_ui->frameRateSpinBox->value() );
+
+}
+
+
+void CGLWidget::Initialize( QAbstractItemModel* pModel )
+{
+   m_pModel = pModel;
+   m_timer.start( 1000 / 40 );
 }
 
 void CGLWidget::paintEvent(QPaintEvent *event)
@@ -64,6 +72,7 @@ void CGLWidget::paintEvent(QPaintEvent *event)
    painter.begin(this);
    painter.setRenderHint(QPainter::Antialiasing);
    painter.fillRect( event->rect(), m_backgroundBrush );
+
    painter.translate( (event->rect().width()/2) + m_horz, (event->rect().height()/2) + m_vert );
 
    painter.save();
@@ -86,7 +95,7 @@ void CGLWidget::paintEvent(QPaintEvent *event)
    int runTime( paintTime.elapsed() - m_timer.interval() );
    if( runTime < 0 )
    {
-      emit FrameSlip( runTime );
+      emit FrameSlip( QString("Frame Slip: %1").arg(runTime), 1000 );
    }
 }
 
@@ -112,7 +121,7 @@ void CGLWidget::SetTargetFramerate( int frameRate )
 
 void CGLWidget::SetLockStep( bool set )
 {
-   m_ui->frameRateSpinBox->setEnabled( !set );
+   //m_ui->frameRateSpinBox->setEnabled( !set );
    if( set )
    {
       m_timer.stop();
@@ -123,7 +132,7 @@ void CGLWidget::SetLockStep( bool set )
    }
    else
    {
-      m_timer.start( 1000 / m_ui->frameRateSpinBox->value() );
+      m_timer.start( 1000 / 30 );
       disconnect(this,
                  SLOT(dataChanged(QModelIndex,QModelIndex)));
    }
@@ -137,4 +146,9 @@ void CGLWidget::SetBodyZoom( double zoom )
 void CGLWidget::dataChanged( const QModelIndex &, const QModelIndex & )
 {
    repaint();
+}
+
+void CGLWidget::SetFocus( int row )
+{
+   m_focus = row;
 }

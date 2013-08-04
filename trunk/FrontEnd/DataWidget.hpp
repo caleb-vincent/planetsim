@@ -29,7 +29,7 @@
 #define DataWidget_HPP
 
 #include <QMenu>
-#include <QDockWidget>
+#include <QWidget>
 
 namespace Ui {
    class CDataWidget;
@@ -38,7 +38,7 @@ namespace Ui {
 class CBodyModel;
 class QModelIndex;
 
-class CDataWidget : public QDockWidget
+class CDataWidget : public QWidget
 {
       Q_OBJECT
       
@@ -47,11 +47,15 @@ class CDataWidget : public QDockWidget
       ~CDataWidget();
 
       void Init( CBodyModel* pModel );
+
+   signals:
+      void SetFocus( int index );
       
    public slots:
       void ShowContextMenu( const QPoint& );
 
    private slots:
+      void on_actionCenter_activated();
 
    private:
       Ui::CDataWidget * m_pUi;

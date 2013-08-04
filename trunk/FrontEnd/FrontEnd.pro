@@ -15,23 +15,21 @@ TARGET = FrontEnd
 
 SOURCES += MainWindow.cpp \
         GLWidget.cpp \
-    SettingsWidget.cpp \
     DataWidget.cpp \
     AboutDialog.cpp \
     ContextMenu.cpp
 
-HEADERS  += MainWindow.h \
+HEADERS  += \
             GLWidget.hpp \
-    SettingsWidget.hpp \
     DataWidget.hpp \
     AboutDialog.hpp \
-    ContextMenu.hpp
+    ContextMenu.hpp \
+    MainWindow.hpp
 
 INCLUDEPATH += '../BackEnd'
 
 FORMS += \
     DataWidget.ui \
-    SettingsWidget.ui \
     MainWindow.ui \
     AboutDialog.ui \
     GLWidget.ui

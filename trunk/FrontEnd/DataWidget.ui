@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>CDataWidget</class>
- <widget class="QDockWidget" name="CDataWidget">
+ <widget class="QWidget" name="CDataWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,13 +10,9 @@
     <height>480</height>
    </rect>
   </property>
-  <property name="floating">
-   <bool>true</bool>
-  </property>
   <property name="windowTitle">
    <string>Data</string>
   </property>
-  <widget class="QWidget" name="dataWidgetContents">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTableView" name="tableView">
@@ -38,7 +34,6 @@
      </widget>
     </item>
    </layout>
-  </widget>
   <action name="actionEdit">
    <property name="checkable">
     <bool>true</bool>
@@ -64,6 +59,14 @@
    </property>
    <property name="toolTip">
     <string>Delete body from data</string>
+   </property>
+  </action>
+  <action name="actionCenter">
+   <property name="text">
+    <string>actionCenter</string>
+   </property>
+   <property name="toolTip">
+    <string>Center View on this Object</string>
    </property>
   </action>
  </widget>

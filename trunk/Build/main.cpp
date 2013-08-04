@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-#include "MainWindow.h"
+#include "MainWindow.hpp"
 #include "BodyModel.hpp"
 
 #include <QApplication>

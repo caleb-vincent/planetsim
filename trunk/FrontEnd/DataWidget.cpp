@@ -30,7 +30,7 @@
 #include "ui_DataWidget.h"
 
 CDataWidget::CDataWidget(QWidget *parent) :
-   QDockWidget(parent),
+   QWidget(parent),
    m_pUi(new Ui::CDataWidget),
    m_menu( this )
 {
@@ -51,10 +51,19 @@ void CDataWidget::Init( CBodyModel* pModel )
    m_menu.addSeparator();
    m_menu.addAction( m_pUi->actionAdd );
    m_menu.addAction( m_pUi->actionDelete );
+   m_menu.addSeparator();
+   m_menu.addAction( m_pUi->actionCenter);
 }
 
 void CDataWidget::ShowContextMenu( const QPoint& pos )
 {
    QPoint globalPos = this->mapToGlobal(pos);
    m_menu.exec( globalPos );
+}
+
+void CDataWidget::on_actionCenter_activated()
+{
+   QItemSelectionModel *select = m_pUi->tableView->selectionModel();
+   emit SetFocus(  select->selectedRows().at(0).row() );
+
 }

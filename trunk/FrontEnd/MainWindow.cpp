@@ -25,10 +25,9 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-   #include "MainWindow.h"
+#include "MainWindow.hpp"
 
 #include "GLWidget.hpp"
-#include "SettingsWidget.hpp"
 #include "DataWidget.hpp"
 #include "BodyModel.hpp"
 #include "AboutDialog.hpp"
@@ -53,29 +52,18 @@ CMainWindow::CMainWindow(CBodyModel* pModel, QWidget *parent)
 {
    m_ui->setupUi(this);
 
-   CGLWidget* glArea( new CGLWidget( m_pModel, this ) );
-   setCentralWidget( glArea );
+   m_ui->GLView->Initialize( m_pModel );
+   m_ui->DataView->Init( m_pModel );
 
-   CSettingsWidget* pSettingsWidget( new CSettingsWidget(this) );
-   pSettingsWidget->Init( m_pModel );
 
-   CDataWidget* pDataWidget( new CDataWidget(this) );
-   pDataWidget->Init( m_pModel );
-
-   addDockWidget( Qt::TopDockWidgetArea, pDataWidget );
-   addDockWidget( Qt::LeftDockWidgetArea, pSettingsWidget );
 
    m_ui->statusbar->addWidget( &m_frameSlip );
 
    QTimer *timer = new QTimer(this);
    QObject::connect( timer,
                      SIGNAL(timeout()),
-                     glArea,
+                     m_ui->GLView,
                      SLOT(repaint()) );
-   connect( glArea,
-            SIGNAL( FrameSlip(int)),
-            this,
-            SLOT(FrameSlip(int)) );
 
    timer->start(50);
 }
@@ -149,4 +137,14 @@ void CMainWindow::on_actionOpen_activated()
    {
       emit Open( fileName );
    }
+}
+
+void CMainWindow::on_actionCascade_triggered()
+{
+   m_ui->mdiArea->cascadeSubWindows();
+}
+
+void CMainWindow::on_actionTile_triggered()
+{
+    m_ui->mdiArea->tileSubWindows();
 }

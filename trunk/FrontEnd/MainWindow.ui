@@ -13,8 +13,296 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout"/>
+   <property name="autoFillBackground">
+    <bool>true</bool>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QToolBox" name="OptionsToolbox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="RenderPage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>233</width>
+         <height>458</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>Render</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="0">
+         <widget class="QCheckBox" name="AutoCenterCheckBox">
+          <property name="text">
+           <string>Auto Center</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="AutoZoomCheckBox">
+          <property name="text">
+           <string>Auto Zoom</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="SizeLabel">
+          <property name="text">
+           <string>Size Scale</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="SizeScaleSpinBox">
+          <property name="accelerated">
+           <bool>true</bool>
+          </property>
+          <property name="decimals">
+           <number>10</number>
+          </property>
+          <property name="maximum">
+           <double>99999.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>1.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="DistanceLabel">
+          <property name="text">
+           <string>Distance Scale</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QDoubleSpinBox" name="DistanceScaleSpinBox">
+          <property name="accelerated">
+           <bool>true</bool>
+          </property>
+          <property name="decimals">
+           <number>10</number>
+          </property>
+          <property name="maximum">
+           <double>99999.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="HorxOfffsetLabel">
+          <property name="text">
+           <string>Horizontal Offset</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox">
+          <property name="accelerated">
+           <bool>true</bool>
+          </property>
+          <property name="decimals">
+           <number>10</number>
+          </property>
+          <property name="maximum">
+           <double>999999999.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="vertOffsetLabel">
+          <property name="text">
+           <string>Vertical Offset</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+          <property name="accelerated">
+           <bool>true</bool>
+          </property>
+          <property name="decimals">
+           <number>10</number>
+          </property>
+          <property name="maximum">
+           <double>999999999.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="targetFrameRateLabel">
+          <property name="text">
+           <string>Target Framerate</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QSpinBox" name="targetFrameRate">
+          <property name="accelerated">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="ModelPage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>249</width>
+         <height>458</height>
+        </rect>
+       </property>
+       <attribute name="label">
+        <string>Model</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayout_2">
+        <property name="fieldGrowthPolicy">
+         <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+        </property>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Target Update Rate:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSpinBox" name="spinBox"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>GravitationalConstant</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+          <property name="decimals">
+           <number>10</number>
+          </property>
+          <property name="maximum">
+           <double>999999999.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QMdiArea" name="mdiArea">
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::ClickFocus</enum>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <property name="viewMode">
+       <enum>QMdiArea::TabbedView</enum>
+      </property>
+      <property name="documentMode">
+       <bool>false</bool>
+      </property>
+      <property name="tabsClosable">
+       <bool>false</bool>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
+      </property>
+      <widget class="QWidget" name="GLWindow">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="windowTitle">
+        <string>2D View</string>
+       </property>
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="spacing">
+         <number>3</number>
+        </property>
+        <property name="margin">
+         <number>1</number>
+        </property>
+        <item>
+         <widget class="CGLWidget" name="GLView" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>320</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>CrossCursor</cursorShape>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="CDataWidget" name="DataView">
+       <property name="windowTitle">
+        <string>Data View</string>
+       </property>
+      </widget>
+      <widget class="QWidget" name="GL3DView">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="windowTitle">
+        <string>3D View</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -22,7 +310,7 @@
      <x>0</x>
      <y>0</y>
      <width>801</width>
-     <height>27</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -37,10 +325,10 @@
    </widget>
    <widget class="QMenu" name="menuWindows">
     <property name="title">
-     <string>Windows</string>
+     <string>Window</string>
     </property>
-    <addaction name="actionData"/>
-    <addaction name="actionSettings"/>
+    <addaction name="actionCascade"/>
+    <addaction name="actionTile"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -48,15 +336,7 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menuView">
-    <property name="title">
-     <string>View</string>
-    </property>
-    <addaction name="action2D_View"/>
-    <addaction name="action3D_View"/>
-   </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuView"/>
    <addaction name="menuWindows"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -74,26 +354,20 @@
    <addaction name="separator"/>
    <addaction name="actionPause"/>
   </widget>
-  <action name="actionData">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
+  <action name="actionCascade">
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
-    <string>Data</string>
+    <string>Cascade Windows</string>
    </property>
   </action>
-  <action name="actionSettings">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
+  <action name="actionTile">
    <property name="checked">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
    <property name="text">
-    <string>Settings</string>
+    <string>Tile Windows</string>
    </property>
   </action>
   <action name="actionNew">
@@ -121,13 +395,16 @@
    <property name="checked">
     <bool>true</bool>
    </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>2D View</string>
    </property>
   </action>
   <action name="action3D_View">
-   <property name="checkable">
-    <bool>true</bool>
+   <property name="enabled">
+    <bool>false</bool>
    </property>
    <property name="text">
     <string>3D View</string>
@@ -165,8 +442,127 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CGLWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">GLWidget.hpp</header>
+   <container>1</container>
+   <slots>
+    <signal>FrameSlip(QString,int)</signal>
+    <slot>SetZoom(double)</slot>
+    <slot>SetBodyZoom(double)</slot>
+    <slot>SetHorz(double)</slot>
+    <slot>SetVert(double)</slot>
+    <slot>SetTargetFramerate(int)</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>CDataWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">DataWidget.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>SizeScaleSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>GLView</receiver>
+   <slot>SetBodyZoom(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>181</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>376</x>
+     <y>253</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>DistanceScaleSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>GLView</receiver>
+   <slot>SetZoom(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>163</x>
+     <y>166</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>240</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>doubleSpinBox</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>GLView</receiver>
+   <slot>SetHorz(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>192</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>340</x>
+     <y>268</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>doubleSpinBox_2</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>GLView</receiver>
+   <slot>SetVert(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>126</x>
+     <y>213</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>297</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>GLView</sender>
+   <signal>FrameSlip(QString,int)</signal>
+   <receiver>statusbar</receiver>
+   <slot>showMessage(QString,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>355</x>
+     <y>414</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>615</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>targetFrameRate</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>GLView</receiver>
+   <slot>SetTargetFramerate(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>247</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>362</x>
+     <y>241</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>Pause()</slot>
  </slots>
