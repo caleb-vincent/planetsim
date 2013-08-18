@@ -1,7 +1,5 @@
 QT += core gui opengl
 
-QMAKE_CXXFLAGS += -std=c++11
-
 TEMPLATE = app
 
 SOURCES += main.cpp 
